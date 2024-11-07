@@ -1,0 +1,20 @@
+E:\LTM\Chat-app\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.exe
+E:\LTM\Chat-app\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.deps.json
+E:\LTM\Chat-app\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.runtimeconfig.json
+E:\LTM\Chat-app\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.dll
+E:\LTM\Chat-app\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.pdb
+E:\LTM\Chat-app\Chat-app Server\bin\Debug\net6.0-windows\Communicator.dll
+E:\LTM\Chat-app\Chat-app Server\bin\Debug\net6.0-windows\Communicator.pdb
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.AssemblyReference.cache
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat_app_Server.Server.resources
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.GenerateResource.cache
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.GeneratedMSBuildEditorConfig.editorconfig
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.AssemblyInfoInputs.cache
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.AssemblyInfo.cs
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.CoreCompileInputs.cache
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.CopyComplete
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.dll
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\refint\Chat-app Server.dll
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.pdb
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.genruntimeconfig.cache
+E:\LTM\Chat-app\Chat-app Server\obj\Debug\net6.0-windows\ref\Chat-app Server.dll

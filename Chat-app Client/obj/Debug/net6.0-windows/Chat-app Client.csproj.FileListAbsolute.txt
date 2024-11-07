@@ -1,0 +1,25 @@
+E:\LTM\Chat-app\Chat-app Client\bin\Debug\net6.0-windows\Chat-app Client.exe
+E:\LTM\Chat-app\Chat-app Client\bin\Debug\net6.0-windows\Chat-app Client.deps.json
+E:\LTM\Chat-app\Chat-app Client\bin\Debug\net6.0-windows\Chat-app Client.runtimeconfig.json
+E:\LTM\Chat-app\Chat-app Client\bin\Debug\net6.0-windows\Chat-app Client.dll
+E:\LTM\Chat-app\Chat-app Client\bin\Debug\net6.0-windows\Chat-app Client.pdb
+E:\LTM\Chat-app\Chat-app Client\bin\Debug\net6.0-windows\Communicator.dll
+E:\LTM\Chat-app\Chat-app Client\bin\Debug\net6.0-windows\Communicator.pdb
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.csproj.AssemblyReference.cache
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat_app_Client.ChatBox.resources
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat_app_Client.GroupCreator.resources
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat_app_Client.ImageView.resources
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat_app_Client.Login.resources
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat_app_Client.Properties.Resources.resources
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat_app_Client.Signin.resources
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.csproj.GenerateResource.cache
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.GeneratedMSBuildEditorConfig.editorconfig
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.AssemblyInfoInputs.cache
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.AssemblyInfo.cs
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.csproj.CoreCompileInputs.cache
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.csproj.CopyComplete
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.dll
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\refint\Chat-app Client.dll
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.pdb
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\Chat-app Client.genruntimeconfig.cache
+E:\LTM\Chat-app\Chat-app Client\obj\Debug\net6.0-windows\ref\Chat-app Client.dll
