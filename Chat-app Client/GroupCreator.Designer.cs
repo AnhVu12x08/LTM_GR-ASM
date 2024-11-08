@@ -132,6 +132,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "GroupCreator";
             Text = "Create New Group";
+            Load += GroupCreator_Load;
             ResumeLayout(false);
             PerformLayout();
         }

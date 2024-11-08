@@ -1,13 +1,11 @@
 using Communicator;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
-using System.Xml;
+using System.Security.Cryptography;
+
 
 namespace Chat_app_Server
 {
@@ -16,14 +14,124 @@ namespace Chat_app_Server
         private bool active = true;
         private IPEndPoint iep;
         private TcpListener server;
-        private Dictionary<String, String> USER;
-        private Dictionary<String, List<String>> GROUP;
-        private Dictionary<String, TcpClient> CLIENT;
+        private Dictionary<string, string> USER = new Dictionary<string, string>(); // Initialize
+        private Dictionary<string, List<string>> GROUP = new Dictionary<string, List<string>>(); // Initialize
+        private Dictionary<string, TcpClient> CLIENT = new Dictionary<string, TcpClient>(); // Initialize
+        private const string userFileName = "users.json";
+        private const string groupFileName = "groups.json";
+
 
         public Server()
         {
             InitializeComponent();
+            LoadUserData(); // Load user data on server startup
+            LoadGroupData();
         }
+
+        private void LoadGroupData()
+        {
+            if (File.Exists(groupFileName))
+            {
+                try
+                {
+                    string json = File.ReadAllText(groupFileName);
+                    GROUP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(json);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error loading group data: {ex.Message}");
+                }
+            }
+            else // Group file doesn't exist - create initial groups
+            {
+                InitializeGroups();  // Call a separate function to create initial groups
+                SaveGroupData();
+            }
+        }
+
+        private void SaveGroupData()
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(GROUP);
+                using (FileStream fileStream = new FileStream(groupFileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (StreamWriter streamWriter = new StreamWriter(fileStream))
+                {
+                    streamWriter.Write(json);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving group data: {ex.Message}");
+            }
+
+        }
+
+        private void LoadUserData()
+        {
+            if (File.Exists(userFileName))
+            {
+                try
+                {
+                    string json = File.ReadAllText(userFileName);
+                    USER = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error loading user data: {ex.Message}");
+                    // Consider creating a default empty file:
+                    // File.WriteAllText(userFileName, JsonSerializer.Serialize(new Dictionary<string, string>()));
+
+                }
+            }
+        }
+
+        private void SaveUserData()
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(USER);
+
+                // Use a file stream with exclusive access to prevent corruption during concurrent writes:
+                using (FileStream fileStream = new FileStream(userFileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (StreamWriter streamWriter = new StreamWriter(fileStream))
+                {
+                    streamWriter.Write(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving user data: {ex.Message}");
+            }
+        }
+
+        private void InitializeGroups()  // Separated group initialization logic
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                List<string> groupUser = new List<string>();
+                for (byte j = 0; j < 3; j++)
+                {
+                    // Make sure user accounts exist before adding them to groups:
+                    string username = ((char)('A' + 3 * i + j)).ToString();
+                    if (USER.ContainsKey(username)) // Or another way to check valid users.
+                    {
+                        groupUser.Add(username);
+                    }
+
+                }
+
+                if (USER.ContainsKey("A") && !groupUser.Contains("A")) // Check if user "A" exists
+                {
+                    groupUser.Add("A");
+                }
+
+
+                GROUP.Add("Group " + i.ToString(), groupUser);
+            }
+        }
+
 
         private void Server_Load(object sender, EventArgs e)
         {
@@ -42,8 +150,9 @@ namespace Chat_app_Server
                 return;
             }
 
-            userInitialize();
         }
+
+
 
         private void userInitialize()
         {
@@ -182,35 +291,15 @@ namespace Chat_app_Server
         {
             Account account = JsonSerializer.Deserialize<Account>(infoJson.content);
 
-            if (account != null && account.userName != null && !USER.ContainsKey(account.userName) && !CLIENT.ContainsKey(account.userName))
+            if (account != null && account.userName != null && !USER.ContainsKey(account.userName))
             {
                 Json notification = new Json("SIGNIN_FEEDBACK", "TRUE");
                 sendJson(notification, client);
                 AppendRichTextBox(account.userName + " signed in!");
 
-                USER.Remove(account.userName);
-                USER.Add(account.userName, account.password);
+                USER.Add(account.userName, account.password); 
+                SaveUserData();                            
 
-                CLIENT.Remove(account.userName);
-                CLIENT.Add(account.userName, client);
-
-                foreach (String key in CLIENT.Keys)
-                {
-                    startupClient(CLIENT[key], key);
-                }
-            }
-        }
-
-        private void reponseLogin(Json infoJson, TcpClient client)
-        {
-            Account account = JsonSerializer.Deserialize<Account>(infoJson.content);
-            if (account != null && account.userName != null && USER.ContainsKey(account.userName) && !CLIENT.ContainsKey(account.userName) && USER[account.userName] == account.password)
-            {
-                Json notification = new Json("LOGIN_FEEDBACK", "TRUE");
-                sendJson(notification, client);
-                AppendRichTextBox(account.userName + " logged in!");
-
-                CLIENT.Remove(account.userName);
                 CLIENT.Add(account.userName, client);
 
                 foreach (String key in CLIENT.Keys)
@@ -220,11 +309,46 @@ namespace Chat_app_Server
             }
             else
             {
+                Json notification = new Json("SIGNIN_FEEDBACK", "FALSE");
+                sendJson(notification, client);
+                AppendRichTextBox(account.userName + " failed to sign in (username taken or invalid data).");
+            }
+        }
+
+        private void reponseLogin(Json infoJson, TcpClient client)
+        {
+            Account account = JsonSerializer.Deserialize<Account>(infoJson.content);
+            if (account != null && account.userName != null && USER.ContainsKey(account.userName))
+            {
+                if (!CLIENT.ContainsKey(account.userName) && USER[account.userName] == account.password)
+                {
+                    Json notification = new Json("LOGIN_FEEDBACK", "TRUE");
+                    sendJson(notification, client);
+                    AppendRichTextBox(account.userName + " logged in!");
+
+                    CLIENT.Remove(account.userName);
+                    CLIENT.Add(account.userName, client);
+
+                    foreach (String key in CLIENT.Keys)
+                    {
+                        startupClient(CLIENT[key], key);
+                    }
+                }
+                else
+                {   // *** Added this else block ***
+                    Json notification = new Json("LOGIN_FEEDBACK", "FALSE");
+                    sendJson(notification, client);
+                    AppendRichTextBox(account.userName + " cannot login (incorrect password or already logged in).");
+                }
+            }
+            else
+            {
                 Json notification = new Json("LOGIN_FEEDBACK", "FALSE");
                 sendJson(notification, client);
                 AppendRichTextBox(account.userName + " can not login!");
             }
         }
+  
 
         private void startupClient(TcpClient client, String name)
         {
@@ -280,6 +404,7 @@ namespace Chat_app_Server
 
         private void createGroup(Json infoJson)
         {
+            // In createGroup, check if the group already exists before adding it
             List<string> groupUser = new List<string>();
             Group group = JsonSerializer.Deserialize<Group>(infoJson.content);
 
@@ -288,15 +413,33 @@ namespace Chat_app_Server
             for (int i = 0; i < values.Length; i++)
             {
                 values[i] = values[i].Trim();
-                groupUser.Add(values[i]);
+
+
+                if (USER.ContainsKey(values[i])) // Only add existing users to groups
+                {
+                    groupUser.Add(values[i]);
+
+                }
+
+
+
             }
 
-            GROUP.Add(group.name, groupUser);
-
-            foreach (String key in CLIENT.Keys)
+            // Don't add if the group with that name already exists to prevent overwriting.
+            if (!GROUP.ContainsKey(group.name))
             {
-                startupClient(CLIENT[key], key);
+                GROUP.Add(group.name, groupUser);
+
+                foreach (String key in CLIENT.Keys)
+                {
+                    startupClient(CLIENT[key], key);
+                }
             }
+            // Optionally send an error to the client if they tried to create a duplicate group
+
+
+            SaveGroupData();  //  Save group data to file
+
         }
 
         private void reponseFile(Json infoJson, TcpClient client)

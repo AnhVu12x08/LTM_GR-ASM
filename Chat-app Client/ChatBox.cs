@@ -309,7 +309,7 @@ namespace Chat_app_Client
                 rtbDialog.SelectionColor = rtbDialog.ForeColor;
 
                 //image
-                
+
 
 
                 rtbDialog.SelectionStart = rtbDialog.GetFirstCharIndexOfCurrentLine();

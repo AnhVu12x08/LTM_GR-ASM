@@ -56,5 +56,10 @@ namespace Chat_app_Client
             this.Close();
             new Thread(() => Application.Run(new ChatBox(server, name))).Start();
         }
+
+        private void GroupCreator_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
