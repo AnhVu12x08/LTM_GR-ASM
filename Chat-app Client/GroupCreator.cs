@@ -17,9 +17,12 @@ namespace Chat_app_Client
     public partial class GroupCreator : Form
     {
         private TcpClient server;
-        public GroupCreator(TcpClient server)
+        private string name;
+
+        public GroupCreator(TcpClient server, String name)
         {
             this.server = server;
+            this.name = name;
             InitializeComponent();
         }
 
@@ -43,6 +46,15 @@ namespace Chat_app_Client
             streamWriter.Flush();
 
             this.Close();
+            new Thread(() => Application.Run(new ChatBox(server, name))).Start();
+
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            new Thread(() => Application.Run(new ChatBox(server, name))).Start();
         }
     }
 }

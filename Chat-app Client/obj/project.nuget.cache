@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CypFRkcgXOMrNU/Y+gnihWxhZB8vx1soeCr6RSHLSg/eZHh1nOUkByscaWnDa1VzzwFbeEsuSHqcsNo3eucXYw==",
+  "dgSpecHash": "IWnjq78q3gD0G+T7VKGvivV1ww3p5BQzhJfaGDogQ3i6WITmPLfQ+J1Tdg/bLvQfnV/bnEK9tcGl56iARbM7ag==",
   "success": true,
-  "projectFilePath": "E:\\LTM\\Chat-app\\Chat-app Client\\Chat-app Client.csproj",
+  "projectFilePath": "E:\\LTM\\Main\\Chat-app Client\\Chat-app Client.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

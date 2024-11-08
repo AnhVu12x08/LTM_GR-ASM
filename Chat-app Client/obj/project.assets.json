@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\LTM\\Chat-app\\Chat-app Client\\Chat-app Client.csproj",
+      "projectUniqueName": "E:\\LTM\\Main\\Chat-app Client\\Chat-app Client.csproj",
       "projectName": "Chat-app Client",
-      "projectPath": "E:\\LTM\\Chat-app\\Chat-app Client\\Chat-app Client.csproj",
+      "projectPath": "E:\\LTM\\Main\\Chat-app Client\\Chat-app Client.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\LTM\\Chat-app\\Chat-app Client\\obj\\",
+      "outputPath": "E:\\LTM\\Main\\Chat-app Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "E:\\LTM\\Chat-app\\Communicator\\Communicator.csproj": {
-              "projectPath": "E:\\LTM\\Chat-app\\Communicator\\Communicator.csproj"
+            "E:\\LTM\\Main\\Communicator\\Communicator.csproj": {
+              "projectPath": "E:\\LTM\\Main\\Communicator\\Communicator.csproj"
             }
           }
         }

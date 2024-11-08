@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\LTM\\Chat-app\\Communicator\\Communicator.csproj",
+      "projectUniqueName": "E:\\LTM\\Main\\Communicator\\Communicator.csproj",
       "projectName": "Communicator",
-      "projectPath": "E:\\LTM\\Chat-app\\Communicator\\Communicator.csproj",
+      "projectPath": "E:\\LTM\\Main\\Communicator\\Communicator.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\LTM\\Chat-app\\Communicator\\obj\\",
+      "outputPath": "E:\\LTM\\Main\\Communicator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

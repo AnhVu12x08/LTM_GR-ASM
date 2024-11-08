@@ -9,3 +9,14 @@ E:\LTM\Chat-app\Communicator\obj\Debug\net6.0\Communicator.dll
 E:\LTM\Chat-app\Communicator\obj\Debug\net6.0\refint\Communicator.dll
 E:\LTM\Chat-app\Communicator\obj\Debug\net6.0\Communicator.pdb
 E:\LTM\Chat-app\Communicator\obj\Debug\net6.0\ref\Communicator.dll
+E:\LTM\Main\Communicator\bin\Debug\net6.0\Communicator.deps.json
+E:\LTM\Main\Communicator\bin\Debug\net6.0\Communicator.dll
+E:\LTM\Main\Communicator\bin\Debug\net6.0\Communicator.pdb
+E:\LTM\Main\Communicator\obj\Debug\net6.0\Communicator.GeneratedMSBuildEditorConfig.editorconfig
+E:\LTM\Main\Communicator\obj\Debug\net6.0\Communicator.AssemblyInfoInputs.cache
+E:\LTM\Main\Communicator\obj\Debug\net6.0\Communicator.AssemblyInfo.cs
+E:\LTM\Main\Communicator\obj\Debug\net6.0\Communicator.csproj.CoreCompileInputs.cache
+E:\LTM\Main\Communicator\obj\Debug\net6.0\Communicator.dll
+E:\LTM\Main\Communicator\obj\Debug\net6.0\refint\Communicator.dll
+E:\LTM\Main\Communicator\obj\Debug\net6.0\Communicator.pdb
+E:\LTM\Main\Communicator\obj\Debug\net6.0\ref\Communicator.dll

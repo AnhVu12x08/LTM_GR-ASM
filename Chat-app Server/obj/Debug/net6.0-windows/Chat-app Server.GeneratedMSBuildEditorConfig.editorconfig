@@ -14,4 +14,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Chat_app_Server
-build_property.ProjectDir = E:\LTM\Chat-app\Chat-app Server\
+build_property.ProjectDir = E:\LTM\Main\Chat-app Server\

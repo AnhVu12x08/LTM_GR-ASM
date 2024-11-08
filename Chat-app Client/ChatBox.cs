@@ -27,6 +27,7 @@ namespace Chat_app_Client
         private bool threadActive = true;
         private StreamReader streamReader;
         private StreamWriter streamWriter;
+        private byte[] imageBytes;
 
         public ChatBox(TcpClient server, String name)
         {
@@ -90,7 +91,8 @@ namespace Chat_app_Client
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
-            new Thread(() => Application.Run(new GroupCreator(server))).Start();
+            new Thread(() => Application.Run(new GroupCreator(server, name))).Start();
+            this.Close();
         }
 
         private void btnPicture_Click(object sender, EventArgs e)
@@ -106,7 +108,6 @@ namespace Chat_app_Client
                 try
                 {
                     OpenFileDialog ofd = new OpenFileDialog();
-                    //ofd.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All files(*.*)|*.*";
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         String fName = ofd.FileName;
@@ -149,7 +150,7 @@ namespace Chat_app_Client
 
         private void receiveTheard()
         {
-            while(server != null && threadActive)
+            while (server != null && threadActive)
             {
                 try
                 {
@@ -165,7 +166,7 @@ namespace Chat_app_Client
                             Startup startup = JsonSerializer.Deserialize<Startup>(infoJson.content);
 
                             List<string> groups = JsonSerializer.Deserialize<List<String>>(startup.group);
-                            foreach(String group in groups)
+                            foreach (String group in groups)
                             {
                                 addDataInDataGridView(tblGroup, new string[] { group });
                             }
@@ -179,6 +180,7 @@ namespace Chat_app_Client
                         case "MESSAGE":
                             if (infoJson.content != null)
                             {
+
                                 Messages message = JsonSerializer.Deserialize<Messages?>(infoJson.content);
                                 if (message != null)
                                 {
@@ -194,42 +196,73 @@ namespace Chat_app_Client
                             if (infoJson.content != null)
                             {
                                 BufferFile bufferFile = JsonSerializer.Deserialize<BufferFile>(infoJson.content);
-                                List<string> ImageExtensions = new List<string> { ".JPG", ".JPEG", ".JPE", ".BMP", ".GIF", ".PNG" };
+                                List<string> ImageExtensions = new List<string> { ".JPG", ".JPEG", ".JPE", ".GIF", ".PNG" };
 
                                 if (ImageExtensions.Contains(bufferFile.extension.ToUpper()))
                                 {
-                                    new Thread(()=> Application.Run(new ImageView(bufferFile))).Start() ;
+                                    Thread staThread = new Thread(() =>
+                                    {
+                                        try
+                                        {
+                                            using (MemoryStream ms = new MemoryStream(imageBytes))
+                                            {
+                                                if (ms.Length > 0)
+                                                {
+                                                    System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                                                    Clipboard.SetImage(image);
 
-                                    AppendRichTextBox(bufferFile.sender, bufferFile.receiver, "Shared the " + bufferFile.extension + " file in ", @Environment.CurrentDirectory);
+                                                    rtbDialog.BeginInvoke(new MethodInvoker(() =>
+                                                    {
+                                                        rtbDialog.Paste();
+                                                        AppendRichTextBox(bufferFile.sender, bufferFile.receiver, "Shared an image:", "");
+                                                    }));
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("MemoryStream is empty. No image to display.");
+                                                    AppendRichTextBox(bufferFile.sender, bufferFile.receiver, "Error displaying image. No image data found.", "");
+                                                }
+                                            }
+                                        }
+                                        catch (ArgumentException ex)
+                                        {
+                                            Console.WriteLine("Error loading image: " + ex.Message);
+                                            AppendRichTextBox(bufferFile.sender, bufferFile.receiver, "Error displaying image. Invalid image data.", "");
+                                        }
+
+                                        catch (Exception ex)
+                                        {
+
+                                            Console.WriteLine("Unexpected error: " + ex.Message);
+                                        }
+                                    });
+
+                                    staThread.SetApartmentState(ApartmentState.STA);
+                                    staThread.Start();
+                                    staThread.Join();
                                 }
                                 else
                                 {
-                                    string fileName = @Environment.CurrentDirectory + "/" + String.Format("{0:yyyy-MM-dd HH-mm-ss}__{1}", DateTime.Now, bufferFile.sender) + bufferFile.extension;
-                                    FileInfo fi = new FileInfo(fileName);
+                                    string fileName = Path.Combine(Environment.CurrentDirectory, $"{DateTime.Now:yyyy-MM-dd HH-mm-ss}__{bufferFile.sender}{bufferFile.extension}");
 
                                     try
                                     {
-                                        // Check if file already exists. If yes, delete it.     
-                                        if (fi.Exists)
-                                        {
-                                            fi.Delete();
-                                        }
+                                        if (File.Exists(fileName))
+                                            File.Delete(fileName);
 
-                                        using (FileStream fStream = File.Create(fileName))
+                                        using (FileStream fStream = new FileStream(fileName, FileMode.Create))
                                         {
                                             fStream.Write(bufferFile.buffer, 0, bufferFile.buffer.Length);
-                                            fStream.Flush();
-                                            fStream.Close();
                                         }
+                                        AppendRichTextBox(bufferFile.sender, bufferFile.receiver, $"Shared the {bufferFile.extension} file in ", Environment.CurrentDirectory);
                                     }
-                                    catch (Exception Ex)
+                                    catch (Exception ex)
                                     {
-                                        Console.WriteLine(Ex.ToString());
+                                        Console.WriteLine("Error saving file: " + ex.Message);
                                     }
-
-                                    AppendRichTextBox(bufferFile.sender, bufferFile.receiver, "Shared the " + bufferFile.extension + " file in ", @Environment.CurrentDirectory);
                                 }
                             }
+
                             break;
                     }
 
@@ -275,6 +308,9 @@ namespace Chat_app_Client
                 rtbDialog.AppendText(link);
                 rtbDialog.SelectionColor = rtbDialog.ForeColor;
 
+                //image
+                
+
 
                 rtbDialog.SelectionStart = rtbDialog.GetFirstCharIndexOfCurrentLine();
                 rtbDialog.SelectionLength = 0;
@@ -295,7 +331,7 @@ namespace Chat_app_Client
             {
                 dataGridView.Rows.Clear();
             }));
-            
+
         }
 
         private void addDataInDataGridView(DataGridView dataGridView, String[] array)
@@ -314,7 +350,7 @@ namespace Chat_app_Client
 
         private void btnLike_Click(object sender, EventArgs e)
         {
-            
+
             if (txtReceiver.Text == "")
             {
                 MessageBox.Show("Empty Fields", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -428,6 +464,11 @@ namespace Chat_app_Client
             Json json = new Json("LOGOUT", this.name);
             sendJson(json);
             threadActive = false;
+        }
+
+        private void rtbDialog_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
