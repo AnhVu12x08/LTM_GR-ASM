@@ -18,13 +18,19 @@ namespace Chat_app_Client
     {
         private TcpClient server;
         private string name;
+        private ChatBox parentChatBox; // Reference to the ChatBox form that opened this dialog
+        private StreamWriter streamWriter; // StreamWriter for communication
 
-        public GroupCreator(TcpClient server, String name)
+        // Constructor receiving the parent ChatBox:
+        public GroupCreator(TcpClient server, string name, ChatBox parent)
         {
+            InitializeComponent();
             this.server = server;
             this.name = name;
-            InitializeComponent();
+            this.parentChatBox = parent;
+            this.streamWriter = new StreamWriter(server.GetStream()); // Initialize StreamWriter
         }
+
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
@@ -45,16 +51,14 @@ namespace Chat_app_Client
             streamWriter.WriteLine(S);
             streamWriter.Flush();
 
-            this.Close();
-            new Thread(() => Application.Run(new ChatBox(server, name))).Start();
-
+            this.DialogResult = DialogResult.OK;  // Important!
+            this.Close(); // Close the GroupCreator dialog
 
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
-            new Thread(() => Application.Run(new ChatBox(server, name))).Start();
         }
 
         private void GroupCreator_Load(object sender, EventArgs e)

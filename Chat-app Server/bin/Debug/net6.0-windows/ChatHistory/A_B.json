@@ -13,5 +13,15 @@
     "sender": "A",
     "receiver": "B",
     "message": "from A to C usesr"
+  },
+  {
+    "sender": "B",
+    "receiver": "A",
+    "message": "hello from B"
+  },
+  {
+    "sender": "A",
+    "receiver": "B",
+    "message": "hello from A"
   }
 ]

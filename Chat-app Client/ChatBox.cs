@@ -29,6 +29,8 @@ namespace Chat_app_Client
         private StreamWriter streamWriter;
         private byte[] imageBytes;
 
+        private Thread receiveThread;
+
         public ChatBox(TcpClient server, String name)
         {
             this.server = server;
@@ -47,6 +49,18 @@ namespace Chat_app_Client
             var mainThread = new Thread(() => receiveTheard());
             mainThread.Start();
             mainThread.IsBackground = true;
+            StartReceiveThread(); // Call the new method
+
+        }
+
+        private void StartReceiveThread()
+        {
+            streamReader = new StreamReader(server.GetStream());
+            streamWriter = new StreamWriter(server.GetStream());
+
+            receiveThread = new Thread(() => receiveTheard()); // Create new thread each time
+            receiveThread.Start();
+            receiveThread.IsBackground = true;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -102,9 +116,33 @@ namespace Chat_app_Client
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
-            new Thread(() => Application.Run(new GroupCreator(server, name))).Start();
-            this.Close();
+            // Create the GroupCreator form, passing 'this' 
+            GroupCreator groupCreator = new GroupCreator(server, name, this);
+
+            // Show the GroupCreator form as a dialog
+            DialogResult result = groupCreator.ShowDialog();
+
+            // Handle dialog result (refresh group list)
+            if (result == DialogResult.OK)
+            {
+                // Request updated group list from the server
+                RequestGroupList();
+            }
         }
+
+        private void RequestGroupList()
+        {
+            try
+            {
+                Json request = new Json("GET_GROUP_LIST", ""); // Or appropriate content if needed
+                sendJson(request);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error requesting group list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void btnPicture_Click(object sender, EventArgs e)
         {
@@ -159,16 +197,65 @@ namespace Chat_app_Client
             this.Close();
         }
 
-        private void receiveTheard()
+        private void HandleDisconnection()
         {
-            while (server != null && threadActive)
+            threadActive = false; // Stop the receive thread
+            MessageBox.Show("Disconnected from the server.", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            // Add any other disconnection logic here (e.g., closing the connection, updating the UI)
+            if (server != null)
             {
                 try
                 {
-                    String jsonString = streamReader.ReadLine();
+
+                    server.Close();
+                    server = null; // Set server to null to prevent further attempts to use it
+
+                }
+                catch (Exception ex2)
+                {
+
+                    MessageBox.Show($"Error closing connection: {ex2.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+            }
+
+            this.BeginInvoke(new MethodInvoker(() => this.Close())); // Close the form or take other appropriate action
+
+
+        }
+
+        private void receiveTheard()
+        {
+            while (server != null && threadActive && server.Connected) // Check connection status
+            {
+                try
+                {
+                    string jsonString = streamReader.ReadLine();
+
+                    if (string.IsNullOrEmpty(jsonString)) // Check for null or empty string
+                    {
+                        // Handle disconnection or empty message. You might want to reconnect or exit the loop.
+                        HandleDisconnection(); // Call a method to handle disconnection
+                        break; // or continue; if you want to keep trying to read
+                    }
+
+
                     Json? infoJson = JsonSerializer.Deserialize<Json?>(jsonString);
 
-                    switch (infoJson?.type) // Add null check here
+
+                    if (infoJson == null)
+                    {
+                        // Handle invalid JSON data
+                        Console.WriteLine("Error: Received invalid JSON data."); // Log or display an error
+                        continue; // Skip to the next iteration
+                    }
+
+
+                    // Now it's safe to access infoJson.type
+                    switch (infoJson.type)
                     {
                         case "STARTUP_FEEDBACK":
                             cleanDataGridView(tblGroup);
@@ -213,6 +300,20 @@ namespace Chat_app_Client
                             }
 
                             break;
+
+                        case "GROUP_LIST":
+                            if (infoJson.content != null)
+                            {
+                                string groupListJson = infoJson.content;
+                                // Deserialize the group list (assuming it's a List<string>)
+                                List<string> updatedGroups = JsonSerializer.Deserialize<List<string>>(groupListJson);
+
+                                // Update the UI with the new group list
+                                UpdateGroupListUI(updatedGroups);
+
+                            }
+                            break;
+
                         case "FILE":
                             if (infoJson.content != null)
                             {
@@ -297,6 +398,19 @@ namespace Chat_app_Client
             }
         }
 
+
+        private void UpdateGroupListUI(List<string> groups)
+        {
+            tblGroup.Invoke(new MethodInvoker(() =>
+            {
+                tblGroup.Rows.Clear();  // Clear the existing list
+                foreach (string group in groups)
+                {
+                    tblGroup.Rows.Add(group);
+                }
+            }));
+        }
+
         private void DisplayChatHistory(List<Messages> chatHistory)
         {
             rtbDialog.Clear(); // Clear existing messages
@@ -316,14 +430,13 @@ namespace Chat_app_Client
         {
             rtbDialog.BeginInvoke(new MethodInvoker(() =>
             {
-                Font currentFont = rtbDialog.SelectionFont;
+                Font currentFont = rtbDialog.Font; // Get the current font of the RichTextBox
 
-                //Username
                 rtbDialog.SelectionStart = rtbDialog.TextLength;
                 rtbDialog.SelectionLength = 0;
                 rtbDialog.SelectionColor = Color.Red;
                 rtbDialog.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, FontStyle.Bold);
-                rtbDialog.AppendText(sender + "<" + receiver + ">");
+                rtbDialog.AppendText(sender + "==>" + receiver);
                 rtbDialog.SelectionColor = rtbDialog.ForeColor;
 
                 rtbDialog.AppendText(": ");
@@ -360,6 +473,8 @@ namespace Chat_app_Client
             }));
         }
 
+
+
         private void cleanDataGridView(DataGridView dataGridView)
         {
             dataGridView.BeginInvoke(new MethodInvoker(() =>
@@ -376,11 +491,26 @@ namespace Chat_app_Client
 
         private void sendJson(Json json)
         {
-            byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(json);
-            String S = Encoding.ASCII.GetString(jsonUtf8Bytes, 0, jsonUtf8Bytes.Length);
+            try
+            {
+                // Serialize JSON to UTF-8 bytes and then to a UTF-8 string
+                string jsonText = JsonSerializer.Serialize(json); // Directly serialize to string
 
-            streamWriter.WriteLine(S);
-            streamWriter.Flush();
+                streamWriter.WriteLine(jsonText);
+                streamWriter.Flush();
+            }
+            catch (JsonException ex)
+            {
+                MessageBox.Show($"Error serializing JSON: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"Error sending data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

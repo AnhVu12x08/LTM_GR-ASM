@@ -236,7 +236,32 @@ namespace Chat_app_Server
                     case "LOGIN":
                         reponseLogin(infoJson, client);
                         break;
-                }
+                    case "GET_GROUP_LIST":
+
+                        string username = GetClientUsername(client); // Get the username
+
+                        if (username != null)
+                        {
+
+                            List<string> userGroups = new List<string>();
+                            foreach (string groupName in GROUP.Keys)
+                            {
+                                if (GROUP[groupName].Contains(username))
+                                {
+
+                                    userGroups.Add(groupName);
+
+                                }
+                            }
+                            string groupsJson = JsonSerializer.Serialize(userGroups);
+                            Json groupListResponse = new Json("GROUP_LIST", groupsJson);
+                            sendJson(groupListResponse, client);
+
+
+                        }
+                        break;
+
+                }   
             }
 
             try
@@ -290,6 +315,18 @@ namespace Chat_app_Server
             {
                 //client.Close();
             }
+        }
+
+        private string GetClientUsername(TcpClient client)
+        {
+            foreach (string username in CLIENT.Keys)
+            {
+                if (CLIENT[username] == client)
+                {
+                    return username;
+                }
+            }
+            return null;
         }
 
         private void reponseSignin(Json infoJson, TcpClient client)
