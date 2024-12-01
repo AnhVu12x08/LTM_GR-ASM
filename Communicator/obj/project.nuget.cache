@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WOtRUDe/JPBzwIjhIPxv6nfFRwG/GhWGF9BYxEesFjH/U7vmaZsMtkyRbfs7dk2cZXVH07QiRX8+jt5LKjOOBQ==",
+  "dgSpecHash": "hwts0jrZ8ok=",
   "success": true,
-  "projectFilePath": "E:\\LTM\\Main\\Communicator\\Communicator.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\Communicator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
+  ],
   "logs": []
 }

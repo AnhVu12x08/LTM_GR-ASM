@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatBox));
             tblUser = new DataGridView();
             Online = new DataGridViewButtonColumn();
             tblGroup = new DataGridView();
@@ -41,20 +40,10 @@
             txtReceiver = new TextBox();
             btnCreateGroup = new Button();
             button1 = new Button();
-            btnLike = new PictureBox();
-            btnLove = new PictureBox();
-            btnLaugh = new PictureBox();
-            btnCry = new PictureBox();
-            btnDevil = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)tblUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tblGroup).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSend).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnLike).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnLove).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnLaugh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnCry).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnDevil).BeginInit();
             SuspendLayout();
             // 
             // tblUser
@@ -208,71 +197,6 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // btnLike
-            // 
-            btnLike.Cursor = Cursors.Hand;
-            btnLike.Image = (Image)resources.GetObject("btnLike.Image");
-            btnLike.Location = new Point(205, 561);
-            btnLike.Margin = new Padding(3, 4, 3, 4);
-            btnLike.Name = "btnLike";
-            btnLike.Size = new Size(34, 40);
-            btnLike.SizeMode = PictureBoxSizeMode.Zoom;
-            btnLike.TabIndex = 2;
-            btnLike.TabStop = false;
-            btnLike.Click += btnLike_Click;
-            // 
-            // btnLove
-            // 
-            btnLove.Cursor = Cursors.Hand;
-            btnLove.Image = (Image)resources.GetObject("btnLove.Image");
-            btnLove.Location = new Point(262, 561);
-            btnLove.Margin = new Padding(3, 4, 3, 4);
-            btnLove.Name = "btnLove";
-            btnLove.Size = new Size(34, 40);
-            btnLove.SizeMode = PictureBoxSizeMode.Zoom;
-            btnLove.TabIndex = 2;
-            btnLove.TabStop = false;
-            btnLove.Click += btnLove_Click;
-            // 
-            // btnLaugh
-            // 
-            btnLaugh.Cursor = Cursors.Hand;
-            btnLaugh.Image = (Image)resources.GetObject("btnLaugh.Image");
-            btnLaugh.Location = new Point(319, 561);
-            btnLaugh.Margin = new Padding(3, 4, 3, 4);
-            btnLaugh.Name = "btnLaugh";
-            btnLaugh.Size = new Size(34, 40);
-            btnLaugh.SizeMode = PictureBoxSizeMode.Zoom;
-            btnLaugh.TabIndex = 2;
-            btnLaugh.TabStop = false;
-            btnLaugh.Click += btnLaugh_Click;
-            // 
-            // btnCry
-            // 
-            btnCry.Cursor = Cursors.Hand;
-            btnCry.Image = (Image)resources.GetObject("btnCry.Image");
-            btnCry.Location = new Point(376, 561);
-            btnCry.Margin = new Padding(3, 4, 3, 4);
-            btnCry.Name = "btnCry";
-            btnCry.Size = new Size(34, 40);
-            btnCry.SizeMode = PictureBoxSizeMode.Zoom;
-            btnCry.TabIndex = 2;
-            btnCry.TabStop = false;
-            btnCry.Click += btnCry_Click;
-            // 
-            // btnDevil
-            // 
-            btnDevil.Cursor = Cursors.Hand;
-            btnDevil.Image = (Image)resources.GetObject("btnDevil.Image");
-            btnDevil.Location = new Point(433, 561);
-            btnDevil.Margin = new Padding(3, 4, 3, 4);
-            btnDevil.Name = "btnDevil";
-            btnDevil.Size = new Size(34, 40);
-            btnDevil.SizeMode = PictureBoxSizeMode.Zoom;
-            btnDevil.TabIndex = 2;
-            btnDevil.TabStop = false;
-            btnDevil.Click += btnDevil_Click;
-            // 
             // ChatBox
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -284,11 +208,6 @@
             Controls.Add(txtReceiver);
             Controls.Add(txtMessage);
             Controls.Add(btnSend);
-            Controls.Add(btnDevil);
-            Controls.Add(btnCry);
-            Controls.Add(btnLaugh);
-            Controls.Add(btnLove);
-            Controls.Add(btnLike);
             Controls.Add(btnPicture);
             Controls.Add(rtbDialog);
             Controls.Add(tblGroup);
@@ -302,11 +221,6 @@
             ((System.ComponentModel.ISupportInitialize)tblGroup).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnSend).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnLike).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnLove).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnLaugh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnCry).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnDevil).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -325,10 +239,5 @@
         private Button button1;
         private DataGridViewButtonColumn Online;
         private DataGridViewButtonColumn Group;
-        private PictureBox btnLike;
-        private PictureBox btnLove;
-        private PictureBox btnLaugh;
-        private PictureBox btnCry;
-        private PictureBox btnDevil;
     }
 }

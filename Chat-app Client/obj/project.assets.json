@@ -27,19 +27,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\LTM\\Main\\Chat-app Client\\Chat-app Client.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Chat-app Client\\Chat-app Client.csproj",
       "projectName": "Chat-app Client",
-      "projectPath": "E:\\LTM\\Main\\Chat-app Client\\Chat-app Client.csproj",
+      "projectPath": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Chat-app Client\\Chat-app Client.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\LTM\\Main\\Chat-app Client\\obj\\",
+      "outputPath": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Chat-app Client\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +58,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "E:\\LTM\\Main\\Communicator\\Communicator.csproj": {
-              "projectPath": "E:\\LTM\\Main\\Communicator\\Communicator.csproj"
+            "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\Communicator.csproj": {
+              "projectPath": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\Communicator.csproj"
             }
           }
         }
@@ -63,7 +68,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net6.0-windows7.0": {
@@ -87,7 +98,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -38,3 +38,23 @@ E:\LTM\Main\Chat-app Server\obj\Debug\net6.0-windows\refint\Chat-app Server.dll
 E:\LTM\Main\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.pdb
 E:\LTM\Main\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.genruntimeconfig.cache
 E:\LTM\Main\Chat-app Server\obj\Debug\net6.0-windows\ref\Chat-app Server.dll
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.exe
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.deps.json
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.runtimeconfig.json
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.dll
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\bin\Debug\net6.0-windows\Chat-app Server.pdb
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\bin\Debug\net6.0-windows\Communicator.dll
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\bin\Debug\net6.0-windows\Communicator.pdb
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.AssemblyReference.cache
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat_app_Server.Server.resources
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.GenerateResource.cache
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.AssemblyInfoInputs.cache
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.AssemblyInfo.cs
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.CoreCompileInputs.cache
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.CopyComplete
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.dll
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\refint\Chat-app Server.dll
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.pdb
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.genruntimeconfig.cache
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\ref\Chat-app Server.dll

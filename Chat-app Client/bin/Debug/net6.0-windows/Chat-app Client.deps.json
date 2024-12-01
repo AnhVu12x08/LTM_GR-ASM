@@ -16,7 +16,10 @@
       },
       "Communicator/1.0.0": {
         "runtime": {
-          "Communicator.dll": {}
+          "Communicator.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

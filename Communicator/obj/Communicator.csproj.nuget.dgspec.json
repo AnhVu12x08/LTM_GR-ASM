@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\LTM\\Main\\Communicator\\Communicator.csproj": {}
+    "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\Communicator.csproj": {}
   },
   "projects": {
-    "E:\\LTM\\Main\\Communicator\\Communicator.csproj": {
+    "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\Communicator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LTM\\Main\\Communicator\\Communicator.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\Communicator.csproj",
         "projectName": "Communicator",
-        "projectPath": "E:\\LTM\\Main\\Communicator\\Communicator.csproj",
+        "projectPath": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\Communicator.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\LTM\\Main\\Communicator\\obj\\",
+        "outputPath": "C:\\Users\\admin\\OneDrive - Industrial University of HoChiMinh City\\Desktop\\LTM\\LTM_GR-ASM\\Communicator\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,7 +38,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -50,12 +60,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
