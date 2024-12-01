@@ -86,7 +86,18 @@ namespace Chat_app_Client
 
         private void tblUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtReceiver.Text = tblUser.Rows[e.RowIndex].Cells["Online"].Value.ToString();
+            string selectedUser = tblUser.Rows[e.RowIndex].Cells["Online"].Value.ToString();
+            txtReceiver.Text = selectedUser;
+
+            // Request chat history from the server
+            RequestChatHistory(selectedUser);
+        }
+
+        private void RequestChatHistory(string otherUser)
+        {
+            // Send a request to the server for chat history
+            Json request = new Json("REQUEST_HISTORY", otherUser); // "REQUEST_HISTORY" is the new type
+            sendJson(request);
         }
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
@@ -157,7 +168,7 @@ namespace Chat_app_Client
                     String jsonString = streamReader.ReadLine();
                     Json? infoJson = JsonSerializer.Deserialize<Json?>(jsonString);
 
-                    switch (infoJson.type)
+                    switch (infoJson?.type) // Add null check here
                     {
                         case "STARTUP_FEEDBACK":
                             cleanDataGridView(tblGroup);
@@ -191,6 +202,16 @@ namespace Chat_app_Client
                                     else AppendRichTextBox(message.sender, message.receiver, message.message, "");
                                 }
                             }
+                            break;
+
+                        case "CHAT_HISTORY": // New case to handle chat history from server
+                            if (infoJson.content != null)
+                            {
+                                string historyJson = infoJson.content;
+                                List<Messages> chatHistory = JsonSerializer.Deserialize<List<Messages>>(historyJson);
+                                DisplayChatHistory(chatHistory);
+                            }
+
                             break;
                         case "FILE":
                             if (infoJson.content != null)
@@ -267,11 +288,28 @@ namespace Chat_app_Client
                     }
 
                 }
-                catch
+                catch (Exception ex)
                 {
-                    threadActive = false;
+                    // Handle exceptions appropriately (log, display an error message, etc.)
+                    MessageBox.Show($"Error in receiveThread: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    threadActive = false; // Or consider reconnecting
                 }
             }
+        }
+
+        private void DisplayChatHistory(List<Messages> chatHistory)
+        {
+            rtbDialog.Clear(); // Clear existing messages
+
+            if (chatHistory != null)
+            {
+
+                foreach (Messages message in chatHistory)
+                {
+                    AppendRichTextBox(message.sender, message.receiver, message.message, "");
+                }
+            }
+
         }
 
         private void AppendRichTextBox(string sender, string receiver, string message, string link)
@@ -309,9 +347,6 @@ namespace Chat_app_Client
                 rtbDialog.SelectionColor = rtbDialog.ForeColor;
 
                 //image
-
-
-
                 rtbDialog.SelectionStart = rtbDialog.GetFirstCharIndexOfCurrentLine();
                 rtbDialog.SelectionLength = 0;
 

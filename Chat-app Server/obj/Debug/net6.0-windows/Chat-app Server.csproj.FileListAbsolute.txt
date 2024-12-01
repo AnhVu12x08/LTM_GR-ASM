@@ -52,9 +52,10 @@ C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LT
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.AssemblyInfoInputs.cache
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.AssemblyInfo.cs
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.CoreCompileInputs.cache
-C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.csproj.CopyComplete
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.dll
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\refint\Chat-app Server.dll
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.pdb
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.genruntimeconfig.cache
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\ref\Chat-app Server.dll
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app Server.sourcelink.json
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Chat-app Server\obj\Debug\net6.0-windows\Chat-app.B05670A3.Up2Date

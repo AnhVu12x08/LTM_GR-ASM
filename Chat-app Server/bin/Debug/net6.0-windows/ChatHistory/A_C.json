@@ -1,0 +1,22 @@
+[
+  {
+    "sender": "C",
+    "receiver": "A",
+    "message": "from C to A user"
+  },
+  {
+    "sender": "A",
+    "receiver": "C",
+    "message": "from A to C user"
+  },
+  {
+    "sender": "C",
+    "receiver": "A",
+    "message": "ok reiceive mees from A"
+  },
+  {
+    "sender": "C",
+    "receiver": "A",
+    "message": "C to A user"
+  }
+]

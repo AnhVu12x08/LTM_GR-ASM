@@ -5,6 +5,8 @@ using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.IO;
+
 
 
 namespace Chat_app_Server
@@ -19,6 +21,9 @@ namespace Chat_app_Server
         private Dictionary<string, TcpClient> CLIENT = new Dictionary<string, TcpClient>(); // Initialize
         private const string userFileName = "users.json";
         private const string groupFileName = "groups.json";
+
+        private const string chatHistoryDirectory = "ChatHistory"; // Directory to store chat history
+
 
 
         public Server()
@@ -371,6 +376,14 @@ namespace Chat_app_Server
             String startupJson = JsonSerializer.Serialize(startup);
             Json json = new Json("STARTUP_FEEDBACK", startupJson);
             sendJson(json, client);
+
+            foreach (string otherUser in CLIENT.Keys)
+            {
+                if (otherUser != name)  // Don't send history with self
+                {
+                    SendChatHistory(client, name, otherUser);
+                }
+            }
         }
 
         private void reponseMessage(Json infoJson)
@@ -378,6 +391,7 @@ namespace Chat_app_Server
             Messages messages = JsonSerializer.Deserialize<Messages>(infoJson.content);
             if (messages != null && CLIENT.ContainsKey(messages.receiver))
             {
+                SaveChatMessage(messages);
                 AppendRichTextBox(messages.sender + " to " + messages.receiver + ": " + messages.message);
 
                 TcpClient receiver = CLIENT[messages.receiver];
@@ -401,6 +415,82 @@ namespace Chat_app_Server
                 }
             }
         }
+
+        private void SaveChatMessage(Messages message)
+        {
+            string conversationId = GetConversationId(message.sender, message.receiver); // Ensure consistent file naming
+            string filePath = Path.Combine(chatHistoryDirectory, $"{conversationId}.json");
+
+            List<Messages> chatHistory;
+
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string json = File.ReadAllText(filePath);
+                    chatHistory = JsonSerializer.Deserialize<List<Messages>>(json);
+                }
+                else
+                {
+                    chatHistory = new List<Messages>();
+                }
+
+                chatHistory.Add(message);
+
+
+                string updatedJson = JsonSerializer.Serialize(chatHistory, new JsonSerializerOptions { WriteIndented = true });
+
+                Directory.CreateDirectory(chatHistoryDirectory);
+                File.WriteAllText(filePath, updatedJson);
+
+            }
+            catch (Exception ex)
+            {
+                AppendRichTextBox($"Error saving chat history: {ex.Message}");
+                // Handle the exception appropriately (log, display error message, etc.)
+            }
+        }
+
+        private string GetConversationId(string user1, string user2)
+        {
+            // Ensure consistent file naming by sorting the usernames
+            string[] users = new string[] { user1, user2 };
+            Array.Sort(users);
+            return string.Join("_", users);
+        }
+
+
+        private void SendChatHistory(TcpClient client, string user1, string user2)
+        {
+            string conversationId = GetConversationId(user1, user2);
+            string filePath = Path.Combine(chatHistoryDirectory, $"{conversationId}.json");
+
+
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    string json = File.ReadAllText(filePath);
+                    List<Messages> chatHistory = JsonSerializer.Deserialize<List<Messages>>(json);
+
+                    foreach (Messages message in chatHistory)
+                    {
+                        string messageJson = JsonSerializer.Serialize(message);
+                        Json jsonMessage = new Json("MESSAGE", messageJson);
+                        sendJson(jsonMessage, client);
+                    }
+                }
+
+                catch (Exception ex)
+                {
+
+                    AppendRichTextBox($"Error sending chat history: {ex.Message}");
+                }
+
+
+            }
+        }
+
 
         private void createGroup(Json infoJson)
         {
