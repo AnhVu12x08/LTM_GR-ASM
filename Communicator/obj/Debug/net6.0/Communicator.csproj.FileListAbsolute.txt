@@ -31,3 +31,4 @@ C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LT
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Communicator\obj\Debug\net6.0\refint\Communicator.dll
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Communicator\obj\Debug\net6.0\Communicator.pdb
 C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Communicator\obj\Debug\net6.0\ref\Communicator.dll
+C:\Users\admin\OneDrive - Industrial University of HoChiMinh City\Desktop\LTM\LTM_GR-ASM\Communicator\obj\Debug\net6.0\Communicator.sourcelink.json

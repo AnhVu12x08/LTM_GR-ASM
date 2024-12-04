@@ -50,6 +50,8 @@
             // 
             tblUser.AllowUserToAddRows = false;
             tblUser.AllowUserToDeleteRows = false;
+            tblUser.BackgroundColor = SystemColors.Control;
+            tblUser.BorderStyle = BorderStyle.None;
             tblUser.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblUser.Columns.AddRange(new DataGridViewColumn[] { Online });
             tblUser.Location = new Point(14, 57);
@@ -58,7 +60,7 @@
             tblUser.ReadOnly = true;
             tblUser.RowHeadersWidth = 51;
             tblUser.RowTemplate.Height = 25;
-            tblUser.Size = new Size(174, 268);
+            tblUser.Size = new Size(202, 268);
             tblUser.TabIndex = 4;
             tblUser.CellContentClick += tblUser_CellContentClick;
             // 
@@ -76,6 +78,8 @@
             // 
             tblGroup.AllowUserToAddRows = false;
             tblGroup.AllowUserToDeleteRows = false;
+            tblGroup.BackgroundColor = SystemColors.Control;
+            tblGroup.BorderStyle = BorderStyle.None;
             tblGroup.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblGroup.Columns.AddRange(new DataGridViewColumn[] { Group });
             tblGroup.Location = new Point(14, 333);
@@ -84,7 +88,7 @@
             tblGroup.ReadOnly = true;
             tblGroup.RowHeadersWidth = 51;
             tblGroup.RowTemplate.Height = 25;
-            tblGroup.Size = new Size(174, 268);
+            tblGroup.Size = new Size(202, 268);
             tblGroup.TabIndex = 3;
             tblGroup.CellContentClick += tblGroup_CellContentClick;
             // 
@@ -101,11 +105,11 @@
             // rtbDialog
             // 
             rtbDialog.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rtbDialog.Location = new Point(205, 57);
+            rtbDialog.Location = new Point(222, 57);
             rtbDialog.Margin = new Padding(3, 4, 3, 4);
             rtbDialog.Name = "rtbDialog";
             rtbDialog.ReadOnly = true;
-            rtbDialog.Size = new Size(695, 495);
+            rtbDialog.Size = new Size(678, 544);
             rtbDialog.TabIndex = 2;
             rtbDialog.Text = "";
             rtbDialog.TextChanged += rtbDialog_TextChanged;
@@ -153,18 +157,19 @@
             lblWelcome.ForeColor = Color.Maroon;
             lblWelcome.Location = new Point(14, 12);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(131, 28);
+            lblWelcome.Size = new Size(101, 28);
             lblWelcome.TabIndex = 4;
-            lblWelcome.Text = "Welcome, ...";
+            lblWelcome.Text = "Welcome";
             // 
             // txtReceiver
             // 
+            txtReceiver.BorderStyle = BorderStyle.None;
             txtReceiver.Font = new Font("Times New Roman", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtReceiver.Location = new Point(205, 9);
+            txtReceiver.Location = new Point(222, 13);
             txtReceiver.Margin = new Padding(3, 4, 3, 4);
             txtReceiver.Name = "txtReceiver";
             txtReceiver.ReadOnly = true;
-            txtReceiver.Size = new Size(126, 35);
+            txtReceiver.Size = new Size(126, 28);
             txtReceiver.TabIndex = 0;
             // 
             // btnCreateGroup

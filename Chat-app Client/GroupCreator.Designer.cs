@@ -31,10 +31,10 @@
             label1 = new Label();
             txtGroupName = new TextBox();
             label2 = new Label();
-            label3 = new Label();
-            txtMembers = new TextBox();
             btnCreate = new Button();
             btnExit = new Button();
+            label4 = new Label();
+            members_listcheckbox = new CheckedListBox();
             SuspendLayout();
             // 
             // label1
@@ -67,26 +67,6 @@
             label2.TabIndex = 4;
             label2.Text = "Group Name";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label3.Location = new Point(14, 109);
-            label3.Name = "label3";
-            label3.Size = new Size(74, 19);
-            label3.TabIndex = 5;
-            label3.Text = "Members";
-            // 
-            // txtMembers
-            // 
-            txtMembers.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtMembers.Location = new Point(14, 133);
-            txtMembers.Margin = new Padding(3, 4, 3, 4);
-            txtMembers.Multiline = true;
-            txtMembers.Name = "txtMembers";
-            txtMembers.Size = new Size(214, 97);
-            txtMembers.TabIndex = 1;
-            // 
             // btnCreate
             // 
             btnCreate.BackColor = Color.RosyBrown;
@@ -117,15 +97,34 @@
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Times New Roman", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label4.Location = new Point(285, 51);
+            label4.Name = "label4";
+            label4.Size = new Size(74, 19);
+            label4.TabIndex = 8;
+            label4.Text = "Members";
+            // 
+            // members_listcheckbox
+            // 
+            members_listcheckbox.FormattingEnabled = true;
+            members_listcheckbox.Location = new Point(285, 75);
+            members_listcheckbox.Name = "members_listcheckbox";
+            members_listcheckbox.Size = new Size(201, 312);
+            members_listcheckbox.TabIndex = 7;
+            members_listcheckbox.SelectedIndexChanged += GroupCreator_Load;
+            // 
             // GroupCreator
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(296, 350);
+            ClientSize = new Size(547, 448);
+            Controls.Add(label4);
+            Controls.Add(members_listcheckbox);
             Controls.Add(btnExit);
             Controls.Add(btnCreate);
-            Controls.Add(txtMembers);
-            Controls.Add(label3);
             Controls.Add(txtGroupName);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -142,9 +141,9 @@
         private Label label1;
         private TextBox txtGroupName;
         private Label label2;
-        private Label label3;
-        private TextBox txtMembers;
         private Button btnCreate;
         private Button btnExit;
+        private Label label4;
+        private CheckedListBox members_listcheckbox;
     }
 }
